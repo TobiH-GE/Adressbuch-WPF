@@ -2,7 +2,7 @@
 
 namespace Adressbuch_Model
 {
-    public static class StaticData
+    public static class StaticData /// only for testing
     {
         public static List<Contact> ContactsList = new List<Contact>()
         {

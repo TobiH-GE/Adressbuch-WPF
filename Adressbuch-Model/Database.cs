@@ -50,7 +50,7 @@ namespace Adressbuch_Model
 
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
-            builder.DataSource = "Contacts.db"; //TODO: Fehlerbehandlung
+            builder.DataSource = "Contacts.db"; //TODO: Fehlerbehandlung verbessern
 
             if (!File.Exists(builder.DataSource))
             {
