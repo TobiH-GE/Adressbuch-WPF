@@ -9,9 +9,28 @@ namespace Adressbuch_ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<Contact> entries;
+        public ICommand AddUser { get; init; }
+        public ICommand ModifyUser { get; init; }
+        public ICommand GetUser { get; init; }
 
-        private int _selectedIndex = 0;
+        private int     _selectedIndex = 0;
+        private string  _selectedForeName = "";
+        private string  _selectedLastName = "";
+        private string  _selectedTown = "";
+        private string  _selectedStreet = "";
+        private string  _selectedCountry = "";
+        public MainViewModel()
+        {
+            //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
+            Database addressDatabase = new Database();
+            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactsDatabase());
+
+            AddUser = new AddContactCommand() { Parent = this };
+            ModifyUser = new ModifyContactCommand() { Parent = this };
+            GetUser = new GetContactCommand() { Parent = this };
+        }
         public int SelectedIndex
         {
             get { return _selectedIndex; }
@@ -26,7 +45,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-        private string _selectedForeName;
         public string SelectedForeName
         {
             get { return _selectedForeName; }
@@ -39,7 +57,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-        private string _selectedLastName;
         public string SelectedLastName
         {
             get { return _selectedLastName; }
@@ -52,7 +69,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-        private string _selectedStreet;
         public string SelectedStreet
         {
             get { return _selectedStreet; }
@@ -65,7 +81,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-        private string _selectedTown;
         public string SelectedTown
         {
             get { return _selectedTown; }
@@ -78,7 +93,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-        private string _selectedCountry;
         public string SelectedCountry
         {
             get { return _selectedCountry; }
@@ -91,22 +105,6 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-
-        public ICommand AddUser { get; init; }
-        public ICommand ModifyUser { get; init; }
-        public ICommand GetUser { get; init; }
-
-        public MainViewModel()
-        {
-            //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
-            Database addressDatabase = new Database();
-            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactsDatabase());
-
-            AddUser = new AddContactCommand() { Parent = this };
-            ModifyUser = new ModifyContactCommand() { Parent = this };
-            GetUser = new GetContactCommand() { Parent = this };
-        }
-
         public ObservableCollection<Contact> EntryList
         {
             get => entries;
@@ -119,7 +117,5 @@ namespace Adressbuch_ViewModel
                 }
             }
         }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
