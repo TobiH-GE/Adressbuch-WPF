@@ -44,13 +44,18 @@ namespace Adressbuch_Model
             }
             return true;
         }
-        public List<Contact> LoadContactDatabase()
+        public List<Contact> LoadContactsDatabase()
         {
+            List<Contact> newContactsList = new List<Contact>();
+
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
             builder.DataSource = "Contacts.db"; //TODO: Fehlerbehandlung
 
-            List<Contact> newContactsList = new List<Contact>();
+            if (!File.Exists(builder.DataSource))
+            {
+                return newContactsList;
+            }
 
             using (SQLiteConnection connection = new(builder.ToString()))
             {
