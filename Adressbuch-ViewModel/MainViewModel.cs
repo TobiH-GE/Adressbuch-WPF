@@ -9,7 +9,7 @@ namespace Adressbuch_ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<Address> entries;
+        private ObservableCollection<Contact> entries;
 
         private int _selectedIndex = 0;
         public int SelectedIndex
@@ -21,7 +21,7 @@ namespace Adressbuch_ViewModel
                 {
                     _selectedIndex = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
-                    GetUserCommand run = new GetUserCommand() { Parent = this };
+                    GetContactCommand run = new GetContactCommand() { Parent = this };
                     run.Execute(_selectedIndex);
                 }
             }
@@ -98,16 +98,16 @@ namespace Adressbuch_ViewModel
 
         public MainViewModel()
         {
-            //EntryList = new ObservableCollection<Address>(StaticData.AdressList); // Daten für den ersten Test
+            //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
             Database addressDatabase = new Database();
-            EntryList = new ObservableCollection<Address>(addressDatabase.LoadAddressDatabase());
+            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactDatabase());
 
-            AddUser = new AddUserCommand() { Parent = this };
-            ModifyUser = new ModifyUserCommand() { Parent = this };
-            GetUser = new GetUserCommand() { Parent = this };
+            AddUser = new AddContactCommand() { Parent = this };
+            ModifyUser = new ModifyContactCommand() { Parent = this };
+            GetUser = new GetContactCommand() { Parent = this };
         }
 
-        public ObservableCollection<Address> EntryList
+        public ObservableCollection<Contact> EntryList
         {
             get => entries;
             set

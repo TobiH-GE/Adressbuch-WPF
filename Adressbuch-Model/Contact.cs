@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Adressbuch_Model
 {
-    public class Address : INotifyPropertyChanged
+    public class Contact : INotifyPropertyChanged
     {
         private int _id;
         private string _foreName;

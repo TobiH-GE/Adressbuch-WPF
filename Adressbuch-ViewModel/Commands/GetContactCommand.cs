@@ -5,7 +5,7 @@ using System.Windows.Input;
 
 namespace Adressbuch_ViewModel
 {
-    public class GetUserCommand : ICommand
+    public class GetContactCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;
         public MainViewModel Parent;

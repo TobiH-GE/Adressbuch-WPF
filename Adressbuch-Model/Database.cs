@@ -9,18 +9,18 @@ namespace Adressbuch_Model
 {
     public class Database
     {
-        public bool SaveAddressToDatabase(Address saveAddress)
+        public bool SaveContactToDatabase(Contact saveContact)
         {
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
-            builder.DataSource = "Adressen.db";
+            builder.DataSource = "Contacts.db";
             if (!File.Exists(builder.DataSource))
             {
                 using (SQLiteConnection connection = new (builder.ToString()))
                 {
                     connection.Open(); // Open erstellt automatisch die Datenbank wenn sie nicht da ist, es fehlen nur die Tabellen.
                     SQLiteCommand command = connection.CreateCommand();
-                    command.CommandText = "create table Addresses (ID integer not null primary key, forename varchar(25) not null, lastname varchar(25) not null, street varchar(25) not null, town varchar(25) not null, country varchar(25) not null)";
+                    command.CommandText = "create table Contacts (ID integer not null primary key, forename varchar(25) not null, lastname varchar(25) not null, street varchar(25) not null, town varchar(25) not null, country varchar(25) not null)";
                     command.ExecuteNonQuery();
                 }
             }
@@ -29,12 +29,12 @@ namespace Adressbuch_Model
             {
                 connection.Open();
                 SQLiteCommand command = connection.CreateCommand();
-                command.CommandText = "replace into Addresses (forename, lastname, street, town, country) values (@forename, @lastname, @street, @town, @country);";
-                command.Parameters.AddWithValue("@forename", saveAddress.ForeName);
-                command.Parameters.AddWithValue("@lastname", saveAddress.LastName);
-                command.Parameters.AddWithValue("@street", saveAddress.Street);
-                command.Parameters.AddWithValue("@town", saveAddress.Town);
-                command.Parameters.AddWithValue("@country", saveAddress.Country);
+                command.CommandText = "replace into Contacts (forename, lastname, street, town, country) values (@forename, @lastname, @street, @town, @country);";
+                command.Parameters.AddWithValue("@forename", saveContact.ForeName);
+                command.Parameters.AddWithValue("@lastname", saveContact.LastName);
+                command.Parameters.AddWithValue("@street", saveContact.Street);
+                command.Parameters.AddWithValue("@town", saveContact.Town);
+                command.Parameters.AddWithValue("@country", saveContact.Country);
 
                 int linesAffected = command.ExecuteNonQuery();
                 if (linesAffected == 0)
@@ -44,26 +44,26 @@ namespace Adressbuch_Model
             }
             return true;
         }
-        public List<Address> LoadAddressDatabase()
+        public List<Contact> LoadContactDatabase()
         {
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
-            builder.DataSource = "Adressen.db"; //TODO: Fehlerbehandlung
+            builder.DataSource = "Contacts.db"; //TODO: Fehlerbehandlung
 
-            List<Address> newAddressList = new List<Address>();
+            List<Contact> newContactsList = new List<Contact>();
 
             using (SQLiteConnection connection = new(builder.ToString()))
             {
 
                 connection.Open();
                 SQLiteCommand command = connection.CreateCommand();
-                command.CommandText = "select ID, forename, lastname, street, town, country from Addresses";
+                command.CommandText = "select ID, forename, lastname, street, town, country from Contacts";
 
                 using (SQLiteDataReader reader = command.ExecuteReader(System.Data.CommandBehavior.KeyInfo))
                 {
                     while (reader.Read())
                     {
-                        newAddressList.Add(new Address()
+                        newContactsList.Add(new Contact()
                         {
                             ID = reader.GetInt32(0),
                             ForeName = reader.GetString(1),
@@ -75,25 +75,25 @@ namespace Adressbuch_Model
                     }
                 }
             }
-            return newAddressList;
+            return newContactsList;
         }
-        public bool ModifyAddressInDatabase(Address saveAddress)
+        public bool ModifyContactInDatabase(Contact saveContact)
         {
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
-            builder.DataSource = "Adressen.db"; // TODO: Fehlerbehandlung
+            builder.DataSource = "Contacts.db"; // TODO: Fehlerbehandlung
 
             using (SQLiteConnection connection = new(builder.ToString()))
             {
                 connection.Open();
                 SQLiteCommand command = connection.CreateCommand();
-                command.CommandText = "replace into Addresses (ID, forename, lastname, street, town, country) values (@id, @forename, @lastname, @street, @town, @country);";
-                command.Parameters.AddWithValue("@id", saveAddress.ID);
-                command.Parameters.AddWithValue("@forename", saveAddress.ForeName);
-                command.Parameters.AddWithValue("@lastname", saveAddress.LastName);
-                command.Parameters.AddWithValue("@street", saveAddress.Street);
-                command.Parameters.AddWithValue("@town", saveAddress.Town);
-                command.Parameters.AddWithValue("@country", saveAddress.Country);
+                command.CommandText = "replace into Contacts (ID, forename, lastname, street, town, country) values (@id, @forename, @lastname, @street, @town, @country);";
+                command.Parameters.AddWithValue("@id", saveContact.ID);
+                command.Parameters.AddWithValue("@forename", saveContact.ForeName);
+                command.Parameters.AddWithValue("@lastname", saveContact.LastName);
+                command.Parameters.AddWithValue("@street", saveContact.Street);
+                command.Parameters.AddWithValue("@town", saveContact.Town);
+                command.Parameters.AddWithValue("@country", saveContact.Country);
 
                 int linesAffected = command.ExecuteNonQuery();
                 if (linesAffected == 0)
