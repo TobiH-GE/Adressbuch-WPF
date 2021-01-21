@@ -100,7 +100,7 @@ namespace Adressbuch_ViewModel
         {
             //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
             Database addressDatabase = new Database();
-            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactDatabase());
+            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactsDatabase());
 
             AddUser = new AddContactCommand() { Parent = this };
             ModifyUser = new ModifyContactCommand() { Parent = this };
