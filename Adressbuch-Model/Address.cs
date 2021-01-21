@@ -8,11 +8,25 @@ namespace Adressbuch_Model
 {
     public class Address : INotifyPropertyChanged
     {
+        private int _id;
         private string _foreName;
         private string _lastName;
         private string _street;
         private string _town;
         private string _country;
+
+        public int ID
+        {
+            get => _id;
+            set
+            {
+                if (_id != value)
+                {
+                    _id = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(ID)));
+                }
+            }
+        }
         public string ForeName
         {
             get => _foreName;

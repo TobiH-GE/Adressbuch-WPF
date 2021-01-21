@@ -98,7 +98,9 @@ namespace Adressbuch_ViewModel
 
         public MainViewModel()
         {
-            EntryList = new ObservableCollection<Address>(StaticData.AdressList);
+            //EntryList = new ObservableCollection<Address>(StaticData.AdressList); // Daten für den ersten Test
+            Database addressDatabase = new Database();
+            EntryList = new ObservableCollection<Address>(addressDatabase.LoadAddressDatabase());
 
             AddUser = new AddUserCommand() { Parent = this };
             ModifyUser = new ModifyUserCommand() { Parent = this };
