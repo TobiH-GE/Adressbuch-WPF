@@ -1,9 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>Adressbuch_ViewModel</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="WindowsBase" Version="4.6.1055" />
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Adressbuch-Model\Adressbuch-Model.csproj" />

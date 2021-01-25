@@ -21,6 +21,7 @@ namespace Adressbuch_ViewModel
         private string  _selectedTown = "";
         private string  _selectedStreet = "";
         private string  _selectedCountry = "";
+
         public MainViewModel()
         {
             //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
@@ -31,6 +32,7 @@ namespace Adressbuch_ViewModel
             ModifyUser = new ModifyContactCommand() { Parent = this };
             GetUser = new GetContactCommand() { Parent = this };
         }
+
         public int SelectedIndex
         {
             get { return _selectedIndex; }
