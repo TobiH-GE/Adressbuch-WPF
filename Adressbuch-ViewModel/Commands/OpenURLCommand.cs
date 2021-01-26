@@ -20,12 +20,20 @@ namespace Adressbuch_ViewModel
 
         public void Execute(object parameter)
         {
-            var psi = new ProcessStartInfo
+            try
             {
-                FileName = (string)parameter,
-                UseShellExecute = true
-            };
-            Process.Start(psi);
+                var psi = new ProcessStartInfo
+                {
+                    FileName = (string)parameter,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+            }
+            catch (Exception)
+            {
+
+                throw; //TODO: error
+            }
         }
     }
 }
