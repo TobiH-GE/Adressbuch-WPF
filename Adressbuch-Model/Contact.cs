@@ -14,6 +14,11 @@ namespace Adressbuch_Model
         private string _street;
         private string _town;
         private string _country;
+        private string _email;
+        private string _facebook;
+        private string _instagram;
+        private string _twitter;
+        private string _xing;
 
         public int ID
         {
@@ -84,6 +89,71 @@ namespace Adressbuch_Model
                 {
                     _country = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Country)));
+                }
+            }
+        }
+
+        public string EMail
+        {
+            get => _email;
+            set
+            {
+                if (_email != value)
+                {
+                    _email = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EMail)));
+                }
+            }
+        }
+
+        public string Facebook
+        {
+            get => _facebook;
+            set
+            {
+                if (_facebook != value)
+                {
+                    _facebook = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Facebook)));
+                }
+            }
+        }
+
+        public string Instagram
+        {
+            get => _instagram;
+            set
+            {
+                if (_instagram != value)
+                {
+                    _instagram = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Instagram)));
+                }
+            }
+        }
+
+        public string Twitter
+        {
+            get => _twitter;
+            set
+            {
+                if (_twitter != value)
+                {
+                    _twitter = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Twitter)));
+                }
+            }
+        }
+
+        public string Xing
+        {
+            get => _xing;
+            set
+            {
+                if (_xing != value)
+                {
+                    _xing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Xing)));
                 }
             }
         }

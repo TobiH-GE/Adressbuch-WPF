@@ -19,7 +19,7 @@ namespace Adressbuch_ViewModel
         {
             if ((int)parameter < 0) return; //TODO: remove bug
 
-            Contact modifiedContact = new Contact { ID = Parent.SelectedIndex, ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry };
+            Contact modifiedContact = new Contact { ID = Parent.SelectedIndex, ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry, EMail = Parent.SelectedEMail, Facebook = Parent.SelectedFacebook, Instagram = Parent.SelectedInstagram, Twitter = Parent.SelectedTwitter, Xing = Parent.SelectedXing };
 
             Database contactsDatabase = new Database();
             contactsDatabase.ModifyContactInDatabase(modifiedContact);

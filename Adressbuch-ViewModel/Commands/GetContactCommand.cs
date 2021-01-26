@@ -22,6 +22,11 @@ namespace Adressbuch_ViewModel
             Parent.SelectedStreet = Parent.EntryList[(int)parameter].Street;
             Parent.SelectedTown = Parent.EntryList[(int)parameter].Town;
             Parent.SelectedCountry = Parent.EntryList[(int)parameter].Country;
+            Parent.SelectedEMail = Parent.EntryList[(int)parameter].EMail;
+            Parent.SelectedFacebook = Parent.EntryList[(int)parameter].Facebook;
+            Parent.SelectedInstagram = Parent.EntryList[(int)parameter].Instagram;
+            Parent.SelectedTwitter = Parent.EntryList[(int)parameter].Twitter;
+            Parent.SelectedXing = Parent.EntryList[(int)parameter].Xing;
         }
     }
 }

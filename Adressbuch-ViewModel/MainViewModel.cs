@@ -23,6 +23,11 @@ namespace Adressbuch_ViewModel
         private string  _selectedTown = "";
         private string  _selectedStreet = "";
         private string  _selectedCountry = "";
+        private string  _selectedEMail = "";
+        private string  _selectedFacebook = "";
+        private string  _selectedInstagram = "";
+        private string  _selectedTwitter = "";
+        private string  _selectedXing = "";
         private string _filter = "";
 
         public string Filter
@@ -138,6 +143,66 @@ namespace Adressbuch_ViewModel
                 {
                     _selectedCountry = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedCountry)));
+                }
+            }
+        }
+        public string SelectedEMail
+        {
+            get { return _selectedEMail; }
+            set
+            {
+                if (_selectedEMail != value)
+                {
+                    _selectedEMail = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedEMail)));
+                }
+            }
+        }
+        public string SelectedFacebook
+        {
+            get { return _selectedFacebook; }
+            set
+            {
+                if (_selectedFacebook != value)
+                {
+                    _selectedFacebook = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedFacebook)));
+                }
+            }
+        }
+        public string SelectedInstagram
+        {
+            get { return _selectedInstagram; }
+            set
+            {
+                if (_selectedInstagram != value)
+                {
+                    _selectedInstagram = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedInstagram)));
+                }
+            }
+        }
+        public string SelectedTwitter
+        {
+            get { return _selectedTwitter; }
+            set
+            {
+                if (_selectedTwitter != value)
+                {
+                    _selectedTwitter = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedTwitter)));
+                }
+            }
+        }
+        public string SelectedXing
+        {
+            get { return _selectedXing; }
+            set
+            {
+                if (_selectedXing != value)
+                {
+                    _selectedXing = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedXing)));
                 }
             }
         }
