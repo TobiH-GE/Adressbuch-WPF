@@ -11,6 +11,7 @@ namespace Adressbuch_ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<Contact> entries;
+        private ObservableCollection<Contact> entriesWithFilter;
         public ICommand AddUser { get; init; }
         public ICommand ModifyUser { get; init; }
         public ICommand GetUser { get; init; }
@@ -21,16 +22,47 @@ namespace Adressbuch_ViewModel
         private string  _selectedTown = "";
         private string  _selectedStreet = "";
         private string  _selectedCountry = "";
+        private string _filter = "";
+
+        public string Filter
+        {
+            get { return _filter; }
+            set
+            {
+                if (_filter != value)
+                {
+                    _filter = value;
+                    FilterEntries();
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
+                }
+            }
+        }
 
         public MainViewModel()
         {
             //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
-            Database addressDatabase = new Database();
-            EntryList = new ObservableCollection<Contact>(addressDatabase.LoadContactsDatabase());
+            GetContactsFromDatabase();
+            entriesWithFilter = new ObservableCollection<Contact>(entries);
 
             AddUser = new AddContactCommand() { Parent = this };
             ModifyUser = new ModifyContactCommand() { Parent = this };
             GetUser = new GetContactCommand() { Parent = this };
+        }
+        public void GetContactsFromDatabase()
+        {
+            Database ContactsDatabase = new Database();
+            entries = new ObservableCollection<Contact>(ContactsDatabase.LoadContactsDatabase());
+        }
+        private void FilterEntries()
+        {
+            entriesWithFilter.Clear();
+            foreach (var item in entries)
+                if (item.ForeName.Contains(_filter) ||
+                    item.LastName.Contains(_filter) ||
+                    item.Street.Contains(_filter) ||
+                    item.Town.Contains(_filter) ||
+                    item.Country.Contains(_filter))
+                    EntryList.Add(item);
         }
 
         public int SelectedIndex
@@ -109,12 +141,12 @@ namespace Adressbuch_ViewModel
         }
         public ObservableCollection<Contact> EntryList
         {
-            get => entries;
+            get => entriesWithFilter;
             set
             {
-                if (entries != value)
+                if (entriesWithFilter != value)
                 {
-                    entries = value;
+                    entriesWithFilter = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(EntryList)));
                 }
             }

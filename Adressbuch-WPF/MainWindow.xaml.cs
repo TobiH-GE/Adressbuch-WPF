@@ -22,44 +22,13 @@ namespace Adressbuch_WPF
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, INotifyPropertyChanged
+    public partial class MainWindow : Window
     {
-        private string _filter = "";
+        
         public MainWindow()
         {
             InitializeComponent();
             DataContext = new MainViewModel();
-        }
-
-        public string Filter
-        {
-            get { return _filter; }
-            set
-            {
-                if (_filter != value)
-                {
-                    _filter = value;
-                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(Filter)));
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void Contacts_Filter(object sender, System.Windows.Data.FilterEventArgs e)
-        {
-            bool accept = true;
-
-            var item = (Contact)e.Item;
-
-            accept = item.ForeName.Contains(FilterTextBox.Text);
-
-            /*if (_filter != "")
-            {
-                accept = item.ForeName.Contains(_filter);
-            }*/
-
-            e.Accepted = accept;
         }
     }
 }

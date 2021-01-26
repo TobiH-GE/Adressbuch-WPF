@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="ContactManager by TobiH" Height="500" Width="850">
     <Window.Resources>
-        <CollectionViewSource x:Key="ViewSource" x:Name="cvsContacts" Filter="Contacts_Filter" Source="{Binding EntryList}" />
+        <CollectionViewSource x:Key="ViewSource" x:Name="cvsContacts" Source="{Binding EntryList}" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -38,7 +38,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0">
             <Label Margin="3">all contacts</Label>
-            <TextBox x:Name="FilterTextBox" Width="250" Margin="3" Text="{Binding Filter}"/>
+            <TextBox x:Name="FilterTextBox" Width="250" Margin="3" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedIndex}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedForeName}"/>

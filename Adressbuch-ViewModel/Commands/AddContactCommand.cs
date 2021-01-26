@@ -18,10 +18,11 @@ namespace Adressbuch_ViewModel
         public void Execute(object parameter) 
         {
             Contact newContact = new Contact { ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry };
-            Parent.EntryList.Add(newContact);
 
             Database contactsDatabase = new Database();
             contactsDatabase.SaveContactToDatabase(newContact);
+
+            Parent.GetContactsFromDatabase();
         }
     }
 }
