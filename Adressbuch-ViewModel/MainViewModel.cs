@@ -15,6 +15,7 @@ namespace Adressbuch_ViewModel
         public ICommand AddUser { get; init; }
         public ICommand ModifyUser { get; init; }
         public ICommand GetUser { get; init; }
+        public ICommand OpenURL { get; init; }
 
         private int     _selectedIndex = 0;
         private string  _selectedForeName = "";
@@ -47,6 +48,7 @@ namespace Adressbuch_ViewModel
             AddUser = new AddContactCommand() { Parent = this };
             ModifyUser = new ModifyContactCommand() { Parent = this };
             GetUser = new GetContactCommand() { Parent = this };
+            OpenURL = new OpenURLCommand() { Parent = this };
         }
         public void GetContactsFromDatabase()
         {
@@ -65,12 +67,12 @@ namespace Adressbuch_ViewModel
                     EntryList.Add(item);
         }
 
-        public int SelectedIndex
+        public int SelectedIndex // TODO: get ID and not index
         {
             get { return _selectedIndex; }
             set
             {
-                if (_selectedIndex != value)
+                if (_selectedIndex != value && value != -1)
                 {
                     _selectedIndex = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
