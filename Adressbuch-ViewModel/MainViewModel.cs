@@ -11,7 +11,7 @@ namespace Adressbuch_ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private ObservableCollection<Contact> entries;
-        private ObservableCollection<Contact> entriesWithFilter;
+        private ObservableCollection<Contact> entriesWithFilter = new ObservableCollection<Contact>();
         public ICommand AddUser { get; init; }
         public ICommand ModifyUser { get; init; }
         public ICommand GetUser { get; init; }
@@ -43,7 +43,6 @@ namespace Adressbuch_ViewModel
         {
             //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
             GetContactsFromDatabase();
-            entriesWithFilter = new ObservableCollection<Contact>(entries);
 
             AddUser = new AddContactCommand() { Parent = this };
             ModifyUser = new ModifyContactCommand() { Parent = this };
@@ -54,6 +53,7 @@ namespace Adressbuch_ViewModel
         {
             Database ContactsDatabase = new Database();
             entries = new ObservableCollection<Contact>(ContactsDatabase.LoadContactsDatabase());
+            FilterEntries();
         }
         private void FilterEntries()
         {
