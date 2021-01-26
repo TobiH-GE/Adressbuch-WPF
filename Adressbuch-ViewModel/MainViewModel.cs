@@ -17,6 +17,7 @@ namespace Adressbuch_ViewModel
         public ICommand GetUser { get; init; }
         public ICommand OpenURL { get; init; }
 
+        private int     _selectedID = 0;
         private int     _selectedIndex = 0;
         private string  _selectedForeName = "";
         private string  _selectedLastName = "";
@@ -71,7 +72,6 @@ namespace Adressbuch_ViewModel
                     item.Country.Contains(_filter))
                     EntryList.Add(item);
         }
-
         public int SelectedIndex // TODO: get ID and not index
         {
             get { return _selectedIndex; }
@@ -83,6 +83,18 @@ namespace Adressbuch_ViewModel
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
                     GetContactCommand run = new GetContactCommand() { Parent = this };
                     run.Execute(_selectedIndex);
+                }
+            }
+        }
+        public int SelectedID
+        {
+            get { return _selectedID; }
+            set
+            {
+                if (_selectedID != value && value != -1)
+                {
+                    _selectedID = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedID)));
                 }
             }
         }

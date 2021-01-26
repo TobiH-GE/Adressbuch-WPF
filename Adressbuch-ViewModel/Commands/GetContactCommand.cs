@@ -17,6 +17,7 @@ namespace Adressbuch_ViewModel
         public void Execute(object parameter)
         {
             if ((int)parameter < 0 || (int)parameter >= Parent.EntryList.Count) return;
+            Parent.SelectedID = Parent.EntryList[(int)parameter].ID;
             Parent.SelectedForeName = Parent.EntryList[(int)parameter].ForeName;
             Parent.SelectedLastName = Parent.EntryList[(int)parameter].LastName;
             Parent.SelectedStreet = Parent.EntryList[(int)parameter].Street;

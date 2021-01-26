@@ -32,7 +32,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Label Grid.Column="1" Grid.Row="0" Margin="3">contact details</Label>
-        <Label Grid.Column="0" Grid.Row="1" Margin="3">Index</Label>
+        <Label Grid.Column="0" Grid.Row="1" Margin="3">ID</Label>
         <Label Grid.Column="0" Grid.Row="2" Margin="3">Vorname</Label>
         <Label Grid.Column="0" Grid.Row="3" Margin="3">Name</Label>
         <Label Grid.Column="0" Grid.Row="4" Margin="3">Str</Label>
@@ -49,7 +49,7 @@
             <TextBox x:Name="FilterTextBox" Width="250" Margin="3" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedIndex}"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedID}"/>
         <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedForeName}"/>
         <TextBox Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding SelectedLastName}"/>
         <TextBox Grid.Column="1" Grid.Row="4" Margin="3" Text="{Binding SelectedStreet}"/>

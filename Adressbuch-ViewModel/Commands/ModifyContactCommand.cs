@@ -15,16 +15,14 @@ namespace Adressbuch_ViewModel
             return true;
         }
 
-        public void Execute(object parameter)
+        public void Execute(object parameter) //TODO: error handling
         {
-            if ((int)parameter < 0) return; //TODO: remove bug
-
-            Contact modifiedContact = new Contact { ID = Parent.SelectedIndex, ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry, EMail = Parent.SelectedEMail, Facebook = Parent.SelectedFacebook, Instagram = Parent.SelectedInstagram, Twitter = Parent.SelectedTwitter, Xing = Parent.SelectedXing };
+            Contact modifiedContact = new Contact { ID = Parent.SelectedID, ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry, EMail = Parent.SelectedEMail, Facebook = Parent.SelectedFacebook, Instagram = Parent.SelectedInstagram, Twitter = Parent.SelectedTwitter, Xing = Parent.SelectedXing };
 
             Database contactsDatabase = new Database();
             contactsDatabase.ModifyContactInDatabase(modifiedContact);
 
-            Parent.EntryList[(int)parameter] = modifiedContact;
+            Parent.GetContactsFromDatabase();
         }
     }
 }
