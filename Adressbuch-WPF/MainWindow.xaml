@@ -6,91 +6,88 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:Adressbuch_WPF"
         mc:Ignorable="d"
-        Title="ContactManager by TobiH" Height="600" Width="850">
+        Title="ContactManager by TobiH" Height="600" Width="650">
     <Window.Resources>
         <CollectionViewSource x:Key="ViewSource" x:Name="cvsContacts" Source="{Binding EntryList}" />
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="200"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Grid.Column="1" Grid.Row="0" Margin="3">contact details</Label>
-        <Label Grid.Column="0" Grid.Row="1" Margin="3">ID</Label>
-        <Label Grid.Column="0" Grid.Row="2" Margin="3">Vorname</Label>
-        <Label Grid.Column="0" Grid.Row="3" Margin="3">Name</Label>
-        <Label Grid.Column="0" Grid.Row="4" Margin="3">Str</Label>
-        <Label Grid.Column="0" Grid.Row="5" Margin="3">Ort</Label>
-        <Label Grid.Column="0" Grid.Row="6" Margin="3">Land</Label>
-        <Label Grid.Column="0" Grid.Row="7" Margin="3">EMail</Label>
-        <Label Grid.Column="0" Grid.Row="8" Margin="3">Facebook</Label>
-        <Label Grid.Column="0" Grid.Row="9" Margin="3">Instagram</Label>
-        <Label Grid.Column="0" Grid.Row="10" Margin="3">Twitter</Label>
-        <Label Grid.Column="0" Grid.Row="11" Margin="3">Xing</Label>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="110"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Canvas Width="100" Height="100" Grid.Column="1" Grid.Row="0" Background="LightGray"/>
+            <Button x:Name="btnCollapse" Grid.Column="2" Grid.Row="0" Margin="3" Content="//"/>
+            <Label Grid.Column="0" Grid.Row="1" Margin="3">ID</Label>
+            <Label Grid.Column="0" Grid.Row="2" Margin="3">Vorname</Label>
+            <Label Grid.Column="0" Grid.Row="3" Margin="3">Name</Label>
+            <Label Grid.Column="0" Grid.Row="4" Margin="3">Str</Label>
+            <Label Grid.Column="0" Grid.Row="5" Margin="3">Ort</Label>
+            <Label Grid.Column="0" Grid.Row="6" Margin="3">Land</Label>
+            <Label Grid.Column="0" Grid.Row="7" Margin="3">EMail</Label>
+            <Label Grid.Column="0" Grid.Row="8" Margin="3">Facebook</Label>
+            <Label Grid.Column="0" Grid.Row="9" Margin="3">Instagram</Label>
+            <Label Grid.Column="0" Grid.Row="10" Margin="3">Twitter</Label>
+            <Label Grid.Column="0" Grid.Row="11" Margin="3">Xing</Label>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="0">
-            <Label Margin="3">all contacts</Label>
-            <TextBox x:Name="FilterTextBox" Width="250" Margin="3" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedID}"/>
+            <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedForeName}"/>
+            <TextBox Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding SelectedLastName}"/>
+            <TextBox Grid.Column="1" Grid.Row="4" Margin="3" Text="{Binding SelectedStreet}"/>
+            <TextBox Grid.Column="1" Grid.Row="5" Margin="3" Text="{Binding SelectedTown}"/>
+            <TextBox Grid.Column="1" Grid.Row="6" Margin="3" Text="{Binding SelectedCountry}"/>
+            <TextBox x:Name="OpenEMail" Grid.Column="1" Grid.Row="7" Margin="3" Text="{Binding SelectedEMail}"/>
+            <Button x:Name="btnOpenEMail" Grid.Column="2" Grid.Row="7" Margin="3" Content=">>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenEMail, Path=Text}"/>
+            <TextBox x:Name="OpenFacebook" Grid.Column="1" Grid.Row="8" Margin="3" Text="{Binding SelectedFacebook}"/>
+            <Button x:Name="btnOpenFacebook" Grid.Column="2" Grid.Row="8" Margin="3" Content=">>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenFacebook, Path=Text}"/>
+            <TextBox x:Name="OpenInstagram" Grid.Column="1" Grid.Row="9" Margin="3" Text="{Binding SelectedInstagram}"/>
+            <Button x:Name="btnOpenInstagram" Grid.Column="2" Grid.Row="9" Margin="3" Content=">>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenInstagram, Path=Text}"/>
+            <TextBox x:Name="OpenTwitter" Grid.Column="1" Grid.Row="10" Margin="3" Text="{Binding SelectedTwitter}"/>
+            <Button x:Name="btnOpenTwitter" Grid.Column="2" Grid.Row="10" Margin="3" Content=">>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenTwitter, Path=Text}"/>
+            <TextBox x:Name="OpenXing" Grid.Column="1" Grid.Row="11" Margin="3" Text="{Binding SelectedXing}"/>
+            <Button x:Name="btnOpenXing" Grid.Column="2" Grid.Row="11" Margin="3" Content=">>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenXing, Path=Text}"/>
+            <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="12">
+                <Button Width="60" Height="25" Margin="5" Padding="5" Content="Add" Command="{Binding AddUser}" />
+                <Button Width="60" Height="25" Margin="5" Padding="5" Content="Modify" Command="{Binding ModifyUser}" CommandParameter="{Binding ElementName=lvAddress, Path=SelectedID}"/>
+                <Button Width="60" Height="25" Margin="5" Padding="5" Content="Delete" Command="{Binding DeleteUser}" CommandParameter="{Binding ElementName=lvAddress, Path=SelectedID}"/>
+            </StackPanel>
+        </Grid>
+        <Label Grid.Column="0" Grid.Row="0" Margin="3">contact details</Label>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="0">
+            <Label Margin="3">contacts</Label>
+            <TextBox x:Name="FilterTextBox" Width="120" Margin="3" Text="{Binding Filter, UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
-        
-        <TextBox Grid.Column="1" Grid.Row="1" Margin="3" Text="{Binding SelectedID}"/>
-        <TextBox Grid.Column="1" Grid.Row="2" Margin="3" Text="{Binding SelectedForeName}"/>
-        <TextBox Grid.Column="1" Grid.Row="3" Margin="3" Text="{Binding SelectedLastName}"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Margin="3" Text="{Binding SelectedStreet}"/>
-        <TextBox Grid.Column="1" Grid.Row="5" Margin="3" Text="{Binding SelectedTown}"/>
-        <TextBox Grid.Column="1" Grid.Row="6" Margin="3" Text="{Binding SelectedCountry}"/>
-        <StackPanel Grid.Column="1" Grid.Row="7" Orientation="Horizontal" >
-            <TextBox x:Name="OpenEMail" Width="300" Margin="3" Text="{Binding SelectedEMail}"/>
-            <Button x:Name="btnOpenEMail" Margin="3" Content=">>>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenEMail, Path=Text}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="8" Orientation="Horizontal" >
-            <TextBox x:Name="OpenFacebook" Width="300" Margin="3" Text="{Binding SelectedFacebook}"/>
-            <Button x:Name="btnOpenFacebook" Margin="3" Content=">>>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenFacebook, Path=Text}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="9" Orientation="Horizontal" >
-            <TextBox x:Name="OpenInstagram" Width="300" Margin="3" Text="{Binding SelectedInstagram}"/>
-            <Button x:Name="btnOpenInstagram" Margin="3" Content=">>>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenInstagram, Path=Text}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="10" Orientation="Horizontal" >
-            <TextBox x:Name="OpenTwitter" Width="300" Margin="3" Text="{Binding SelectedTwitter}"/>
-            <Button x:Name="btnOpenTwitter" Margin="3" Content=">>>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenTwitter, Path=Text}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Grid.Row="11" Orientation="Horizontal" >
-            <TextBox x:Name="OpenXing" Width="300" Margin="3" Text="{Binding SelectedXing}"/>
-            <Button x:Name="btnOpenXing" Margin="3" Content=">>>" Command="{Binding OpenURL}" CommandParameter="{Binding ElementName=OpenXing, Path=Text}"/>
-        </StackPanel>
-
-        <DataGrid x:Name="dgAddress" Grid.Column="2" Grid.Row="1" Grid.RowSpan="8" Margin="3" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Source={StaticResource ResourceKey=ViewSource}}">
-            <DataGrid.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="{Binding ForeName}" Width="110"/>
-                        <TextBlock Text="{Binding LastName}" Width="110"/>
-                        <TextBlock Text="{Binding Country}" Width="110"/>
-                    </StackPanel>
-                </DataTemplate>
-            </DataGrid.ItemTemplate>
+        <DataGrid Background="White" AutoGenerateColumns="False" x:Name="dgAddress" Grid.Column="1" Grid.Row="1" Margin="3" SelectedIndex="{Binding SelectedIndex}" ItemsSource="{Binding Source={StaticResource ResourceKey=ViewSource}}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="First Name" Binding="{Binding ForeName}"/>
+                    <DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+                </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="12">
-            <Button Content="Add" Command="{Binding AddUser}" />
-            <Button Content="Modify" Command="{Binding ModifyUser}" CommandParameter="{Binding ElementName=lvAddress, Path=SelectedIndex}"/>
-            <Button Content="Get" Command="{Binding GetUser}" CommandParameter="{Binding ElementName=lvAddress, Path=SelectedIndex}"/>
-        </StackPanel>
     </Grid>
 </Window>
