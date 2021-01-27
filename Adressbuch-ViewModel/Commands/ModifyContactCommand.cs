@@ -19,8 +19,7 @@ namespace Adressbuch_ViewModel
         {
             Contact modifiedContact = new Contact { ID = Parent.SelectedID, ForeName = Parent.SelectedForeName, LastName = Parent.SelectedLastName, Street = Parent.SelectedStreet, Town = Parent.SelectedTown, Country = Parent.SelectedCountry, EMail = Parent.SelectedEMail, Facebook = Parent.SelectedFacebook, Instagram = Parent.SelectedInstagram, Twitter = Parent.SelectedTwitter, Xing = Parent.SelectedXing };
 
-            Database contactsDatabase = new Database();
-            contactsDatabase.ModifyContactInDatabase(modifiedContact);
+            Database.ModifyContactInDatabase(modifiedContact);
 
             Parent.GetContactsFromDatabase();
         }

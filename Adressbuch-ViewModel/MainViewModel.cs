@@ -48,7 +48,6 @@ namespace Adressbuch_ViewModel
 
         public MainViewModel()
         {
-            //EntryList = new ObservableCollection<Contact>(StaticData.ContactsList); // Daten für den ersten Test
             GetContactsFromDatabase();
 
             AddUser = new AddContactCommand() { Parent = this };
@@ -58,8 +57,7 @@ namespace Adressbuch_ViewModel
         }
         public void GetContactsFromDatabase()
         {
-            Database ContactsDatabase = new Database();
-            entries = new ObservableCollection<Contact>(ContactsDatabase.LoadContactsDatabase());
+            entries = new ObservableCollection<Contact>(Database.LoadContactsDatabase());
             FilterEntries();
         }
         private void FilterEntries()
