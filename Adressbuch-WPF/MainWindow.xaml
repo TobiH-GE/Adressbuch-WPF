@@ -6,7 +6,7 @@
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:Adressbuch_WPF"
         mc:Ignorable="d"
-        Title="ContactManager by TobiH" Height="600" Width="650">
+        Title="ContactManager by TobiH" Height="600" Width="600">
     <Window.Resources>
         <CollectionViewSource x:Key="ViewSource" x:Name="cvsContacts" Source="{Binding EntryList}" />
     </Window.Resources>
