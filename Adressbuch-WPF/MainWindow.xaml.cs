@@ -30,5 +30,19 @@ namespace Adressbuch_WPF
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void btnCollaps_Click(object sender, RoutedEventArgs e)
+        {
+            if (cdContacts.Width == new GridLength(200))
+            {
+                cdContacts.Width = new GridLength(0);
+                this.Width -= 200;
+            }
+            else
+            {
+                cdContacts.Width = new GridLength(200);
+                this.Width += 200;
+            }
+        }
     }
 }

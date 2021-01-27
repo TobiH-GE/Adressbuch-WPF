@@ -19,6 +19,7 @@ namespace Adressbuch_ViewModel
 
         private int     _selectedID = 0;
         private int     _selectedIndex = 0;
+        private Contact _selectedItem;
         private string  _selectedForeName = "";
         private string  _selectedLastName = "";
         private string  _selectedTown = "";
@@ -72,7 +73,7 @@ namespace Adressbuch_ViewModel
                     item.Country.Contains(_filter))
                     EntryList.Add(item);
         }
-        public int SelectedIndex // TODO: get ID and not index
+        public int SelectedIndex // TODO: remove, only needed for ListView
         {
             get { return _selectedIndex; }
             set
@@ -83,6 +84,20 @@ namespace Adressbuch_ViewModel
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedIndex)));
                     GetContactCommand run = new GetContactCommand() { Parent = this };
                     run.Execute(_selectedIndex);
+                }
+            }
+        }
+        public Contact SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem != value)
+                {
+                    _selectedItem = value;
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
+                    GetContactCommand run = new GetContactCommand() { Parent = this };
+                    run.Execute(_selectedItem.ID - 1);
                 }
             }
         }
