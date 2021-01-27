@@ -9,7 +9,7 @@ namespace Adressbuch_Model
 {
     public class Database
     {
-        public bool SaveContactToDatabase(Contact saveContact)
+        public static bool SaveContactToDatabase(Contact saveContact)
         {
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
@@ -49,7 +49,7 @@ namespace Adressbuch_Model
             }
             return true;
         }
-        public List<Contact> LoadContactsDatabase()
+        public static List<Contact> LoadContactsDatabase()
         {
             List<Contact> newContactsList = new List<Contact>();
 
@@ -92,7 +92,7 @@ namespace Adressbuch_Model
             }
             return newContactsList;
         }
-        public bool ModifyContactInDatabase(Contact saveContact)
+        public static bool ModifyContactInDatabase(Contact saveContact)
         {
             SQLiteConnectionStringBuilder builder = new();
             builder.Version = 3;
