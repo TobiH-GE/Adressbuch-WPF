@@ -90,7 +90,7 @@ namespace Adressbuch_ViewModel
             get { return _selectedItem; }
             set
             {
-                if (_selectedItem != value)
+                if (_selectedItem != value && value != null)
                 {
                     _selectedItem = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(SelectedItem)));
